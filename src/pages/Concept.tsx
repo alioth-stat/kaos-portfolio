@@ -1,32 +1,10 @@
 import { ConceptVideoBackground } from '../components/ConceptVideoBackground'
 
-type CutoutFigure = {
-  id: 'guy' | 'dj' | 'girl'
-  image: string
-  revealTitle: string
-  revealLines: string[]
-}
-
-const figures: CutoutFigure[] = [
-  {
-    id: 'guy',
-    image: '/concept/cutout-guy.png',
-    revealTitle: 'Entrada General',
-    revealLines: ['Libre hasta las 11:00 PM', 'Preventa por Passline'],
-  },
-  {
-    id: 'dj',
-    image: '/concept/cutout-dj.png',
-    revealTitle: 'DJ Lineup',
-    revealLines: ['DJ Nombre 1', 'DJ Nombre 2', 'DJ Nombre 3'],
-  },
-  {
-    id: 'girl',
-    image: '/concept/cutout-girl.png',
-    revealTitle: 'Ladies Pass',
-    revealLines: ['Libre hasta las 11:00 PM', 'Reservas de cumpleaños'],
-  },
-]
+const figures = [
+  { id: 'guy', image: '/concept/cutout-guy.png' },
+  { id: 'dj', image: '/concept/cutout-dj.png' },
+  { id: 'girl', image: '/concept/cutout-girl.png' },
+] as const
 
 export function Concept() {
   return (
@@ -38,50 +16,46 @@ export function Concept() {
         Propuesta creativa no oficial para KAOS Panamá — poster, carrusel y dashboard de muestra.
       </p>
 
-      <section className="concept-block kaos-hero">
-        <h2>0. Página de evento (mockup interactivo)</h2>
-        <p className="muted small">Pasa el cursor sobre cada figura.</p>
-
+      <section className="kaos-hero">
         <div className="cutout-row">
           {figures.map((f) => (
-            <div className={`cutout-wrap cutout-${f.id}`} key={f.id}>
-              <button className="cutout-figure cursor-target" aria-label={f.revealTitle}>
-                <span
-                  className="cutout-figure-fill"
-                  style={{ WebkitMaskImage: `url(${f.image})`, maskImage: `url(${f.image})` }}
-                />
-              </button>
-              <div className="cutout-reveal">
-                <p className="cutout-reveal-title">{f.revealTitle}</p>
-                {f.revealLines.map((line) => (
-                  <p key={line}>{line}</p>
-                ))}
-              </div>
-            </div>
+            <button key={f.id} className={`cutout-figure cursor-target cutout-${f.id}`} aria-label={f.id}>
+              <span
+                className="cutout-figure-fill"
+                style={{ WebkitMaskImage: `url(${f.image})`, maskImage: `url(${f.image})` }}
+              />
+            </button>
           ))}
         </div>
-      </section>
 
-      <section className="concept-block">
-        <h2>1. Poster de evento</h2>
-        <div className="poster-mock">
-          <p className="poster-eyebrow">Casco Antiguo · Panamá</p>
-          <p className="poster-title">KAOS</p>
-          <p className="poster-sub">Noche de Sábado</p>
-          <div className="poster-lineup">
-            <p>DJ LINEUP</p>
-            <p>DJ Nombre 1 — DJ Nombre 2 — DJ Nombre 3</p>
+        <div className="kaos-info-grid">
+          <div className="kaos-info-col">
+            <p className="kaos-info-heading">Entrada General</p>
+            <p>Libre hasta las 11:00 PM</p>
+            <p>Preventa por Passline</p>
           </div>
-          <div className="poster-promo">
-            <p>Entrada libre hasta las 11:00 PM</p>
-            <p>Reservas de cumpleaños disponibles</p>
+
+          <div className="kaos-info-center">
+            <p className="poster-eyebrow">Casco Antiguo · Panamá</p>
+            <p className="poster-title">KAOS</p>
+            <p className="poster-sub">Noche de Sábado</p>
+            <div className="poster-lineup">
+              <p>DJ LINEUP</p>
+              <p>DJ Nombre 1 — DJ Nombre 2 — DJ Nombre 3</p>
+            </div>
+            <p className="poster-cta">Escanea el QR</p>
           </div>
-          <p className="poster-cta">Preventa por Passline · Escanea el QR</p>
+
+          <div className="kaos-info-col">
+            <p className="kaos-info-heading">Ladies Pass</p>
+            <p>Libre hasta las 11:00 PM</p>
+            <p>Reservas de cumpleaños</p>
+          </div>
         </div>
       </section>
 
       <section className="concept-block">
-        <h2>2. Carrusel de Instagram</h2>
+        <h2>1. Carrusel de Instagram</h2>
         <div className="carousel-mock">
           <div className="phone-card">
             <p className="phone-label">Slide 1</p>
@@ -102,7 +76,7 @@ export function Concept() {
       </section>
 
       <section className="concept-block">
-        <h2>3. Dashboard de campaña (cifras de ejemplo)</h2>
+        <h2>2. Dashboard de campaña (cifras de ejemplo)</h2>
         <div className="dashboard-mock">
           <div className="kpi-card">
             <p className="kpi-label">Alcance</p>
