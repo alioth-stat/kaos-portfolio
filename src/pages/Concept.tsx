@@ -1,3 +1,33 @@
+import { ConceptVideoBackground } from '../components/ConceptVideoBackground'
+
+type CutoutFigure = {
+  id: 'guy' | 'dj' | 'girl'
+  image: string
+  revealTitle: string
+  revealLines: string[]
+}
+
+const figures: CutoutFigure[] = [
+  {
+    id: 'guy',
+    image: '/concept/cutout-guy.png',
+    revealTitle: 'Entrada General',
+    revealLines: ['Libre hasta las 11:00 PM', 'Preventa por Passline'],
+  },
+  {
+    id: 'dj',
+    image: '/concept/cutout-dj.png',
+    revealTitle: 'DJ Lineup',
+    revealLines: ['DJ Nombre 1', 'DJ Nombre 2', 'DJ Nombre 3'],
+  },
+  {
+    id: 'girl',
+    image: '/concept/cutout-girl.png',
+    revealTitle: 'Ladies Pass',
+    revealLines: ['Libre hasta las 11:00 PM', 'Reservas de cumpleaños'],
+  },
+]
+
 export function Concept() {
   return (
     <main className="page-content">
@@ -10,6 +40,31 @@ export function Concept() {
       <p className="tagline">
         Tres piezas de muestra: poster de evento, carrusel de Instagram y dashboard de campaña.
       </p>
+
+      <section className="concept-block kaos-hero">
+        <ConceptVideoBackground />
+        <h2>0. Página de evento (mockup interactivo)</h2>
+        <p className="muted small">Pasa el cursor sobre cada figura.</p>
+
+        <div className="cutout-row">
+          {figures.map((f) => (
+            <div className={`cutout-wrap cutout-${f.id}`} key={f.id}>
+              <button className="cutout-figure cursor-target" aria-label={f.revealTitle}>
+                <span
+                  className="cutout-figure-fill"
+                  style={{ WebkitMaskImage: `url(${f.image})`, maskImage: `url(${f.image})` }}
+                />
+              </button>
+              <div className="cutout-reveal">
+                <p className="cutout-reveal-title">{f.revealTitle}</p>
+                {f.revealLines.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className="concept-block">
         <h2>1. Poster de evento</h2>
