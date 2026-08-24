@@ -13,7 +13,7 @@ export function Concept() {
 
       <h1>Concepto: Noche KAOS</h1>
       <p className="tagline">
-        Propuesta creativa no oficial para KAOS Panamá — poster, carrusel y dashboard de muestra.
+        Propuesta creativa para KAOS Panamá
       </p>
 
       <section className="kaos-hero">
@@ -52,7 +52,6 @@ export function Concept() {
       </section>
 
       <section className="concept-block">
-        <h2>1. Carrusel de Instagram</h2>
         <div className="carousel-mock">
           <div className="phone-card">
             <p className="phone-label">Slide 1</p>
@@ -70,32 +69,6 @@ export function Concept() {
             <p>Paquetes de mesa · CTA: escríbenos por WhatsApp</p>
           </div>
         </div>
-      </section>
-
-      <section className="concept-block">
-        <h2>2. Dashboard de campaña (cifras de ejemplo)</h2>
-        <div className="dashboard-mock">
-          <div className="kpi-card">
-            <p className="kpi-label">Alcance</p>
-            <p className="kpi-value">42.3K</p>
-          </div>
-          <div className="kpi-card">
-            <p className="kpi-label">Engagement</p>
-            <p className="kpi-value">8.6%</p>
-          </div>
-          <div className="kpi-card">
-            <p className="kpi-label">Clics a ticketing</p>
-            <p className="kpi-value">1,120</p>
-          </div>
-          <div className="kpi-card">
-            <p className="kpi-label">Reservas confirmadas</p>
-            <p className="kpi-value">37</p>
-          </div>
-        </div>
-        <p className="muted small">
-          Flujo propuesto: QR / Instagram → registro → WhatsApp → recordatorio → encuesta posterior.
-          Cifras ilustrativas, no datos reales de KAOS.
-        </p>
       </section>
     </main>
   )
