@@ -33,8 +33,7 @@ const projects: Project[] = [
     blurb: 'Mapa 3D y KPIs de tráfico para la Vía Centenario.',
     link: 'https://github.com/alioth-stat/Via-Centenario-Digital-Twin',
     linkLabel: 'Ver repositorio',
-    mark: 'VC',
-    accent: 'a',
+    image: '/projects/via-centenario.jpg',
   },
   {
     title: 'GLaDOS Desktop Assistant',
