@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 // Template slot: drop your own image/gif at public/pet/pet.gif (or .png/.webp)
 // and point this at it, e.g. '/pet/pet.gif'. Until set, a default glowing
 // orb (pure CSS, no media file) is shown instead.
-const PET_SRC: string | null = null
+const PET_SRC: string | null = '/projects/pet.gif'
 
 export function DesktopPet() {
   const ref = useRef<HTMLDivElement>(null)
