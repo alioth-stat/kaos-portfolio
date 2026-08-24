@@ -14,11 +14,10 @@ export function Home() {
       </p>
 
       <p className="bio">
-        Profesional creativo y tecnológico con 5 años de experiencia en diseño audiovisual
-        (Adobe After Effects, Photoshop), bilingüe nativo y con fondo sólido en logística,
-        organización y coordinación de proyectos. Combino criterio visual y conocimiento de
-        tendencias de Instagram con automatización e inteligencia artificial para producir
-        contenido y campañas que generan atención, interacción y asistencia a eventos.
+        Cinco años en diseño audiovisual —After Effects, Photoshop— y bilingüe desde siempre.
+        Empecé en logística y coordinación de proyectos, y hoy uso esa base para producir
+        contenido y campañas: entiendo cómo se mueve Instagram, y sumo automatización e IA
+        para que un evento se llene, no solo se vea bien.
       </p>
 
       <RoleSwitch />

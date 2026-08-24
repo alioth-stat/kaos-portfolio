@@ -1,59 +1,65 @@
 type Project = {
   title: string
   tag: string
-  description: string
+  blurb: string
   link: string
   linkLabel: string
+  image?: string
+  mark?: string
+  accent?: 'a' | 'b' | 'c'
 }
 
 const projects: Project[] = [
   {
     title: 'SAPE-PrEP',
-    tag: 'Producto full-stack · desplegado en vivo',
-    description:
-      'Aplicación web de orientación educativa (no diagnóstica) con un motor de reglas explicable, backend en FastAPI y frontend en React/TypeScript. Desplegada en producción en Vercel.',
-    link: 'https://sape-prep-du55.vercel.app',
+    tag: 'Producto full-stack · en vivo',
+    blurb: 'Orientación educativa explicable. No diagnostica, no prescribe.',
+    link: 'https://sape-prep.vercel.app',
     linkLabel: 'Ver sitio en vivo',
+    image: '/projects/sape-prep.png',
+  },
+  {
+    title: 'Conecta Panamá',
+    tag: 'Súper-app comunitaria · ganó el Hackathon ITSE–MUPA 2025',
+    blurb: 'Educación, comercio local y un asistente de IA, en una sola app.',
+    link: 'https://conecta-panama.vercel.app',
+    linkLabel: 'Ver sitio en vivo',
+    image: '/projects/conecta-panama.png',
+  },
+  {
+    title: 'LocalEpiGuard (REYDR)',
+    tag: 'IA aplicada · salud escolar',
+    blurb: 'Reporte y detección temprana de brotes escolares en Panamá.',
+    link: 'https://reydr-smart-outbreak-detection-syst.vercel.app',
+    linkLabel: 'Ver sitio en vivo',
+    image: '/projects/reydr.png',
   },
   {
     title: 'Vía Centenario — Gemelo Digital',
     tag: 'Simulación urbana · React 3D',
-    description:
-      'Simulador y gemelo digital de la Vía Centenario: mapa 3D interactivo, panel de KPIs, controles de escenario y comparación de tráfico, propuesto como herramienta de movilidad y logística para Panamá.',
+    blurb: 'Mapa 3D y KPIs de tráfico para la Vía Centenario.',
     link: 'https://github.com/alioth-stat/Via-Centenario-Digital-Twin',
     linkLabel: 'Ver repositorio',
-  },
-  {
-    title: 'Conecta Panamá',
-    tag: 'Super-app comunitaria · ganador de hackathon',
-    description:
-      'Plataforma que conecta a ciudadanos panameños con educación, información verificada y comercio local: microaprendizaje gamificado, marketplace georreferenciado y asistente de IA. Proyecto ganador del Hackathon ITSE–MUPA 2025.',
-    link: 'https://github.com/alioth-stat/conecta-panama',
-    linkLabel: 'Ver repositorio',
-  },
-  {
-    title: 'REYDR — Sistema de Detección de Brotes',
-    tag: 'IA aplicada · dashboards',
-    description:
-      'Sistema de alerta temprana para brotes de enfermedades, con modelo de predicción entrenado sobre datos biométricos capturados en Panamá y dashboards de monitoreo.',
-    link: 'https://github.com/alioth-stat/REYDR-Smart-Outbreak-Detection-System',
-    linkLabel: 'Ver repositorio',
-  },
-  {
-    title: 'Imaginery',
-    tag: 'Herramienta visual · Python',
-    description:
-      'Aplicación de escritorio que transmite un slideshow continuo de imágenes con manejo de caché y limpieza automática — un experimento de producción de contenido visual generativo/curado en tiempo real.',
-    link: 'https://github.com/alioth-stat',
-    linkLabel: 'Ver perfil de GitHub',
+    mark: 'VC',
+    accent: 'a',
   },
   {
     title: 'GLaDOS Desktop Assistant',
     tag: 'IA con personalidad · Electron',
-    description:
-      'Asistente de escritorio con IA (GPT-4) inspirado en GLaDOS de Portal: interfaz temática, diagnósticos del sistema y atajos de teclado, con builds multiplataforma.',
+    blurb: 'Asistente de escritorio con GPT-4 y la actitud de GLaDOS.',
     link: 'https://github.com/alioth-stat/GLaDOS-desktop-assistant',
     linkLabel: 'Ver repositorio',
+    mark: 'GL',
+    accent: 'b',
+  },
+  {
+    title: 'Imaginery',
+    tag: 'Herramienta visual · Python',
+    blurb: 'Slideshow generativo de escritorio, con caché y limpieza automática.',
+    link: 'https://github.com/alioth-stat',
+    linkLabel: 'Ver perfil de GitHub',
+    mark: 'IM',
+    accent: 'c',
   },
 ]
 
@@ -79,24 +85,31 @@ export function Portfolio() {
         </div>
 
         <p className="bio-caption">
-          Combino diseño, automatización con IA y una base técnica sólida para producir contenido,
-          campañas y productos digitales. Esto es lo que he construido hasta ahora.
+          Diseño, automatización con IA y una base técnica que no es la típica de alguien en
+          marketing. Esto es lo que he hecho con esa mezcla.
         </p>
       </section>
 
       <section className="projects-section">
         <p className="section-label">Proyectos</p>
-        <p className="tagline">
-          Selección de proyectos que combinan diseño, producto y automatización con IA.
-        </p>
+        <p className="tagline">Desliza para ver más →</p>
 
-        <div className="project-grid">
+        <div className="project-carousel">
           {projects.map((p) => (
-            <a className="project-card cursor-target" key={p.title} href={p.link} target="_blank" rel="noreferrer">
-              <p className="project-tag">{p.tag}</p>
-              <h3>{p.title}</h3>
-              <p>{p.description}</p>
-              <span className="project-link">{p.linkLabel} →</span>
+            <a className="carousel-card cursor-target" key={p.title} href={p.link} target="_blank" rel="noreferrer">
+              <div className={`carousel-media${p.image ? '' : ` card-accent-${p.accent}`}`}>
+                {p.image ? (
+                  <img src={p.image} alt={p.title} loading="lazy" />
+                ) : (
+                  <span className="carousel-mark">{p.mark}</span>
+                )}
+              </div>
+              <div className="carousel-body">
+                <p className="carousel-tag">{p.tag}</p>
+                <h3>{p.title}</h3>
+                <p className="carousel-blurb">{p.blurb}</p>
+                <span className="carousel-link">{p.linkLabel} →</span>
+              </div>
             </a>
           ))}
         </div>

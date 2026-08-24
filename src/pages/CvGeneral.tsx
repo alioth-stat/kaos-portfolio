@@ -22,10 +22,9 @@ export function CvGeneral() {
         <section>
           <h2>Perfil</h2>
           <p>
-            Persona organizada, puntual y con buena disposición física, con experiencia
-            coordinando logística y tareas operativas bajo presión en entornos de eventos y
-            competencias. Cómodo en equipos dinámicos, ambientes de alto movimiento y horarios
-            nocturnos o de fin de semana.
+            Organizado, puntual y en buena condición física. He coordinado logística y tareas
+            operativas bajo presión en eventos y competencias, y me acomodo bien a equipos
+            dinámicos y horarios nocturnos o de fin de semana.
           </p>
         </section>
 
