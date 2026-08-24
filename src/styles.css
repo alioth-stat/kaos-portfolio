@@ -198,9 +198,10 @@ a { color: var(--red-3); }
   transform: translateY(-50%);
   z-index: 20;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  gap: 12px;
+  padding: 14px 10px;
   border-radius: 999px;
   background: rgba(20, 20, 20, 0.45);
   backdrop-filter: blur(18px) saturate(140%);
@@ -229,6 +230,7 @@ a { color: var(--red-3); }
   width: 70px;
   accent-color: var(--red-2);
   cursor: pointer;
+  transform: rotate(-90deg);
 }
 
 @media (max-width: 620px) {
@@ -810,30 +812,46 @@ a { color: var(--red-3); }
 
 .kaos-hero {
   position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
   z-index: 1;
   padding-bottom: 40px;
 }
 
+.kaos-info-grid {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .concept-bg {
   position: fixed;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  height: 60vh;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
 .concept-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.15);
   opacity: 0.9;
 }
 
 .concept-bg-scrim {
   position: absolute;
   inset: 0;
-  background: rgba(5, 5, 5, 0.18);
+  background: rgba(5, 5, 5, 0.32);
+  box-shadow: inset 0 0 min(15vw, 15vh) rgba(0, 0, 0, 0.75);
 }
 
 .concept-page.page-content {
@@ -864,7 +882,7 @@ a { color: var(--red-3); }
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 28px;
+  gap: 80px;
   padding: 36px 0 0;
   flex-wrap: wrap;
 }
@@ -880,33 +898,42 @@ a { color: var(--red-3); }
   transition: transform 200ms var(--ease-out);
 }
 
+.cutout-guy { transform: rotate(-9deg); }
+.cutout-girl { transform: rotate(9deg); }
+
 .cutout-figure:hover,
 .cutout-figure:focus-visible {
   transform: scale(1.15);
   outline: none;
 }
 
+.cutout-guy:hover,
+.cutout-guy:focus-visible {
+  transform: rotate(-9deg) scale(1.15);
+}
+
+.cutout-girl:hover,
+.cutout-girl:focus-visible {
+  transform: rotate(9deg) scale(1.15);
+}
+
 .cutout-guy .cutout-figure-fill,
 .cutout-girl .cutout-figure-fill {
-  width: 190px;
-  height: 350px;
+  width: 240px;
+  height: 440px;
 }
 
 .cutout-dj .cutout-figure-fill {
-  width: 230px;
-  height: 430px;
+  width: 280px;
+  height: 520px;
 }
 
 .cutout-figure-fill {
   display: block;
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: bottom center;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: bottom center;
-  background-image: radial-gradient(circle, var(--red-2) 45%, transparent 46%);
-  background-size: 7px 7px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
   animation: cutout-jitter 1s steps(4) infinite;
 }
 
@@ -1020,6 +1047,7 @@ a { color: var(--red-3); }
 
 .carousel-mock {
   display: flex;
+  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
 }

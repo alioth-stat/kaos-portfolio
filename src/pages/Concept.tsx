@@ -20,10 +20,7 @@ export function Concept() {
         <div className="cutout-row">
           {figures.map((f) => (
             <button key={f.id} className={`cutout-figure cursor-target cutout-${f.id}`} aria-label={f.id}>
-              <span
-                className="cutout-figure-fill"
-                style={{ WebkitMaskImage: `url(${f.image})`, maskImage: `url(${f.image})` }}
-              />
+              <img className="cutout-figure-fill" src={f.image} alt="" />
             </button>
           ))}
         </div>
