@@ -345,6 +345,117 @@ a { color: var(--red-3); }
 .skill-label { font-weight: 700; margin-bottom: 2px !important; font-size: 0.85rem; }
 .skill-items { color: var(--fg-2); font-size: 0.85rem !important; }
 
+/* ---------- portfolio page: bio hero ---------- */
+
+.bio-hero {
+  padding: 12px 0 56px;
+}
+
+.bio-hero > * {
+  animation: blur-in 650ms var(--ease-out) both;
+}
+.bio-hero > *:nth-child(1) { animation-delay: 0ms; }
+.bio-hero > *:nth-child(2) { animation-delay: 70ms; }
+.bio-hero > *:nth-child(3) { animation-delay: 140ms; }
+.bio-hero > *:nth-child(4) { animation-delay: 210ms; }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-3);
+  margin: 0 0 22px;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red-2);
+  box-shadow: 0 0 10px var(--red-glow);
+}
+
+.kinetic-headline {
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  max-width: 760px;
+  margin: 0 0 44px;
+}
+
+.accent-italic {
+  font-family: 'Fraunces', 'Georgia', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--red-3);
+}
+
+.photo-pair {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.photo-frame {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline-2);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-3);
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 12px;
+}
+
+.photo-frame-a {
+  width: 260px;
+  height: 340px;
+}
+
+.photo-frame-b {
+  width: 210px;
+  height: 250px;
+  margin-top: 90px;
+}
+
+.bio-caption {
+  color: var(--fg-2);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+}
+
+@media (max-width: 620px) {
+  .photo-pair { flex-wrap: wrap; }
+  .photo-frame-a, .photo-frame-b { width: 100%; max-width: 320px; }
+  .photo-frame-b { margin-top: 0; }
+}
+
+.projects-section {
+  padding-top: 40px;
+  border-top: 1px solid var(--hairline);
+}
+
+.section-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red-3);
+  margin: 0 0 10px;
+}
+
+.projects-section .tagline {
+  margin: 0;
+}
+
 /* ---------- portfolio grid ---------- */
 
 .project-grid {

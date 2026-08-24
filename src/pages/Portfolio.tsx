@@ -59,22 +59,48 @@ const projects: Project[] = [
 
 export function Portfolio() {
   return (
-    <main className="page-content">
-      <h1>Portafolio</h1>
-      <p className="tagline">
-        Selección de proyectos que combinan diseño, producto y automatización con IA.
-      </p>
+    <main className="page-content portfolio-page">
+      <section className="bio-hero">
+        <p className="eyebrow">
+          <span className="eyebrow-dot" />
+          Sobre mí
+        </p>
+        <h1 className="kinetic-headline">
+          Ayudo a marcas y eventos a crear <span className="accent-italic">contenido que conecta.</span>
+        </h1>
 
-      <div className="project-grid">
-        {projects.map((p) => (
-          <a className="project-card cursor-target" key={p.title} href={p.link} target="_blank" rel="noreferrer">
-            <p className="project-tag">{p.tag}</p>
-            <h3>{p.title}</h3>
-            <p>{p.description}</p>
-            <span className="project-link">{p.linkLabel} →</span>
-          </a>
-        ))}
-      </div>
+        <div className="photo-pair">
+          <div className="photo-frame photo-frame-a">
+            <span>Foto próximamente</span>
+          </div>
+          <div className="photo-frame photo-frame-b">
+            <span>Foto próximamente</span>
+          </div>
+        </div>
+
+        <p className="bio-caption">
+          Combino diseño, automatización con IA y una base técnica sólida para producir contenido,
+          campañas y productos digitales. Esto es lo que he construido hasta ahora.
+        </p>
+      </section>
+
+      <section className="projects-section">
+        <p className="section-label">Proyectos</p>
+        <p className="tagline">
+          Selección de proyectos que combinan diseño, producto y automatización con IA.
+        </p>
+
+        <div className="project-grid">
+          {projects.map((p) => (
+            <a className="project-card cursor-target" key={p.title} href={p.link} target="_blank" rel="noreferrer">
+              <p className="project-tag">{p.tag}</p>
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+              <span className="project-link">{p.linkLabel} →</span>
+            </a>
+          ))}
+        </div>
+      </section>
     </main>
   )
 }
