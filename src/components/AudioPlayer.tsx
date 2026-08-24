@@ -1,40 +1,85 @@
 import { useEffect, useRef, useState } from 'react'
 
-// Template slot: drop a licensed/owned track at public/audio/bg.mp3 and set
-// TRACK_SRC below. Left null until then — nothing plays, but the player UI
-// still renders so the control is in place. Never autoplays: browsers block
-// unmuted autoplay by default, and starting audio without a user action is
-// bad practice regardless — playback always starts from a real click here.
-const TRACK_SRC: string | null = null
+// Points at YouTube's own hosted stream via their official IFrame Player
+// API — nothing is downloaded or rehosted, playback stays on YouTube's
+// infrastructure. Never autoplays: playback only starts from the button.
+const YOUTUBE_VIDEO_ID = '3GRqXlKj40M'
+
+declare global {
+  interface Window {
+    YT: any
+    onYouTubeIframeAPIReady?: () => void
+  }
+}
+
+let apiLoadPromise: Promise<void> | null = null
+
+function loadYouTubeApi(): Promise<void> {
+  if (window.YT?.Player) return Promise.resolve()
+  if (apiLoadPromise) return apiLoadPromise
+  apiLoadPromise = new Promise((resolve) => {
+    const previous = window.onYouTubeIframeAPIReady
+    window.onYouTubeIframeAPIReady = () => {
+      previous?.()
+      resolve()
+    }
+    const script = document.createElement('script')
+    script.src = 'https://www.youtube.com/iframe_api'
+    document.head.appendChild(script)
+  })
+  return apiLoadPromise
+}
 
 export function AudioPlayer() {
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const playerRef = useRef<any>(null)
+  const [ready, setReady] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const [volume, setVolume] = useState(0.6)
+  const [volume, setVolume] = useState(60)
 
   useEffect(() => {
-    if (audioRef.current) audioRef.current.volume = volume
+    let cancelled = false
+    loadYouTubeApi().then(() => {
+      if (cancelled || !containerRef.current) return
+      playerRef.current = new window.YT.Player(containerRef.current, {
+        height: '0',
+        width: '0',
+        videoId: YOUTUBE_VIDEO_ID,
+        playerVars: { loop: 1, playlist: YOUTUBE_VIDEO_ID, controls: 0 },
+        events: {
+          onReady: (e: any) => {
+            e.target.setVolume(volume)
+            setReady(true)
+          },
+        },
+      })
+    })
+    return () => {
+      cancelled = true
+      playerRef.current?.destroy?.()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    playerRef.current?.setVolume?.(volume)
   }, [volume])
 
-  if (!TRACK_SRC) return null
-
   const toggle = () => {
-    const el = audioRef.current
-    if (!el) return
-    if (playing) {
-      el.pause()
-    } else {
-      void el.play()
-    }
+    const p = playerRef.current
+    if (!p) return
+    if (playing) p.pauseVideo()
+    else p.playVideo()
     setPlaying(!playing)
   }
 
   return (
-    <div className="audio-player">
-      <audio ref={audioRef} src={TRACK_SRC} loop />
+    <div className="audio-player" title="Audio vía YouTube">
+      <div ref={containerRef} className="audio-player-embed" />
       <button
         className="audio-player-toggle cursor-target"
         onClick={toggle}
+        disabled={!ready}
         aria-label={playing ? 'Pausar música' : 'Reproducir música'}
       >
         {playing ? (
@@ -52,8 +97,7 @@ export function AudioPlayer() {
         className="audio-player-volume"
         type="range"
         min={0}
-        max={1}
-        step={0.01}
+        max={100}
         value={volume}
         onChange={(e) => setVolume(Number(e.target.value))}
         aria-label="Volumen"
