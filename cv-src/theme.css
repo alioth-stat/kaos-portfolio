@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap');
+
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
-  background: #0c0c0e;
+  background: #050505;
   color: #f2f1f0;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
 
 @page {
@@ -17,8 +19,8 @@ html, body {
   width: 210mm;
   min-height: 297mm;
   padding: 11mm 16mm 16mm;
-  background: #0c0c0e;
-  background-image: radial-gradient(circle at 100% 0%, rgba(226, 38, 63, 0.14), transparent 45%);
+  background: #050505;
+  background-image: radial-gradient(circle at 100% 0%, rgba(239, 68, 68, 0.16), transparent 45%);
 }
 
 .name {
@@ -32,7 +34,7 @@ html, body {
 .headline {
   font-size: 12.5pt;
   font-weight: 600;
-  color: #ff4d63;
+  color: #ef4444;
   margin: 3pt 0 8pt;
   letter-spacing: 0.2px;
 }
@@ -40,8 +42,8 @@ html, body {
 .contact {
   font-size: 8.6pt;
   color: #b7b5ba;
-  margin: 0 0 10pt;
-  line-height: 1.4;
+  margin: 0 0 8pt;
+  line-height: 1.35;
 }
 
 .contact a { color: #b7b5ba; text-decoration: none; }
@@ -55,7 +57,7 @@ html, body {
 .section-title {
   font-size: 9.5pt;
   font-weight: 700;
-  color: #ff4d63;
+  color: #ef4444;
   text-transform: uppercase;
   letter-spacing: 1.2px;
   margin: 0 0 6pt;
@@ -68,7 +70,7 @@ html, body {
   margin: 0 0 4pt;
 }
 
-.section { margin-bottom: 9pt; }
+.section { margin-bottom: 7pt; }
 
 ul.bullets {
   margin: 0;
@@ -96,7 +98,7 @@ ul.bullets li { margin-bottom: 3pt; }
 .tag-groups {
   display: flex;
   flex-direction: column;
-  gap: 4pt;
+  gap: 3pt;
 }
 
 .tag-group-label {
