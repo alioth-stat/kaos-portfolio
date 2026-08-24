@@ -134,6 +134,24 @@ a { color: var(--red-3); }
   letter-spacing: 0.02em;
 }
 
+.nav-media-slot {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  margin-left: 8px;
+  border-radius: 6px;
+  border: 1px dashed var(--hairline-2);
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.nav-media-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* ---------- glitch text swap (used for nav mark + bio-hero name) ---------- */
 
 .glitch-word {
@@ -180,6 +198,20 @@ a { color: var(--red-3); }
   filter: blur(2px);
   will-change: transform;
   animation: pet-pulse 1.8s ease-in-out infinite;
+}
+
+.desktop-pet.has-media {
+  background: none;
+  filter: none;
+  animation: none;
+  border-radius: 0;
+}
+
+.desktop-pet img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 @keyframes pet-pulse {

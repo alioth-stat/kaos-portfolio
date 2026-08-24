@@ -1,5 +1,10 @@
 import { useEffect, useRef } from 'react'
 
+// Template slot: drop your own image/gif at public/pet/pet.gif (or .png/.webp)
+// and point this at it, e.g. '/pet/pet.gif'. Until set, a default glowing
+// orb (pure CSS, no media file) is shown instead.
+const PET_SRC: string | null = null
+
 export function DesktopPet() {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -35,5 +40,9 @@ export function DesktopPet() {
     return () => cancelAnimationFrame(raf)
   }, [])
 
-  return <div ref={ref} className="desktop-pet" aria-hidden="true" />
+  return (
+    <div ref={ref} className={`desktop-pet${PET_SRC ? ' has-media' : ''}`} aria-hidden="true">
+      {PET_SRC && <img src={PET_SRC} alt="" />}
+    </div>
+  )
 }
