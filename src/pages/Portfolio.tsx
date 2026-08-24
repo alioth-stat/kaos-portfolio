@@ -5,6 +5,7 @@ type Project = {
   link: string
   linkLabel: string
   image?: string
+  video?: { webm: string; mp4: string; poster: string }
   mark?: string
   accent?: 'a' | 'b' | 'c'
 }
@@ -50,8 +51,11 @@ const projects: Project[] = [
     blurb: 'Slideshow generativo de escritorio, con caché y limpieza automática.',
     link: 'https://github.com/alioth-stat',
     linkLabel: 'Ver perfil de GitHub',
-    mark: 'IM',
-    accent: 'c',
+    video: {
+      webm: '/projects/imaginery.webm',
+      mp4: '/projects/imaginery.mp4',
+      poster: '/projects/imaginery-poster.jpg',
+    },
   },
 ]
 
@@ -89,8 +93,13 @@ export function Portfolio() {
         <div className="project-carousel">
           {projects.map((p) => (
             <a className="carousel-card cursor-target" key={p.title} href={p.link} target="_blank" rel="noreferrer">
-              <div className={`carousel-media${p.image ? '' : ` card-accent-${p.accent}`}`}>
-                {p.image ? (
+              <div className={`carousel-media${p.image || p.video ? '' : ` card-accent-${p.accent}`}`}>
+                {p.video ? (
+                  <video autoPlay loop muted playsInline poster={p.video.poster}>
+                    <source src={p.video.webm} type="video/webm" />
+                    <source src={p.video.mp4} type="video/mp4" />
+                  </video>
+                ) : p.image ? (
                   <img src={p.image} alt={p.title} loading="lazy" />
                 ) : (
                   <span className="carousel-mark">{p.mark}</span>

@@ -515,7 +515,8 @@ a { color: var(--red-3); }
   justify-content: center;
   background: var(--bg-2);
 }
-.carousel-media img {
+.carousel-media img,
+.carousel-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
