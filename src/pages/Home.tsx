@@ -4,8 +4,8 @@ import { RoleSwitch } from '../components/RoleSwitch'
 export function Home() {
   return (
     <main className="page-content hero">
-      <div className="hero-photo" aria-label="Foto profesional próximamente">
-        <span>Foto próximamente</span>
+      <div className="hero-photo">
+        <img src="/projects/alejandro-professional.jpg" alt="Alejandro Polo Palacios" />
       </div>
 
       <h1>Alejandro Polo Palacios</h1>

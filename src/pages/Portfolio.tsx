@@ -41,8 +41,7 @@ const projects: Project[] = [
     blurb: 'Asistente de escritorio con GPT-4 y la actitud de GLaDOS.',
     link: 'https://github.com/alioth-stat/GLaDOS-desktop-assistant',
     linkLabel: 'Ver repositorio',
-    mark: 'GL',
-    accent: 'b',
+    image: '/projects/glados.jpg',
   },
   {
     title: 'Imaginery',
@@ -71,12 +70,14 @@ export function Portfolio() {
         </h1>
 
         <div className="photo-pair">
-          <div className="photo-frame photo-frame-a">
-            <span>Foto próximamente</span>
-          </div>
-          <div className="photo-frame photo-frame-b">
-            <span>Foto próximamente</span>
-          </div>
+          <figure className="photo-frame photo-frame-a">
+            <img src="/projects/alejandro-professional.jpg" alt="Alejandro Polo Palacios en una entrevista de prensa" />
+            <figcaption>Prensa y comunicación</figcaption>
+          </figure>
+          <figure className="photo-frame photo-frame-b">
+            <img src="/projects/alejandro-nightlife.jpg" alt="Alejandro Polo Palacios en un evento nocturno" />
+            <figcaption>Cultura y eventos nocturnos</figcaption>
+          </figure>
         </div>
 
         <p className="bio-caption">

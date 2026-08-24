@@ -186,16 +186,17 @@ a { color: var(--red-3); }
   width: 136px;
   height: 136px;
   border-radius: 50%;
-  border: 1px dashed var(--hairline-2);
+  border: 1px solid var(--hairline-2);
   background: var(--surface);
   margin: 0 auto 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--fg-3);
-  font-size: 0.7rem;
-  text-align: center;
-  padding: 10px;
+  overflow: hidden;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
 }
 
 .hero h1 {
@@ -405,13 +406,28 @@ a { color: var(--red-3); }
   border-radius: var(--radius-lg);
   border: 1px solid var(--hairline-2);
   background: var(--surface);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--fg-3);
-  font-size: 0.75rem;
-  text-align: center;
-  padding: 12px;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.photo-frame figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px 12px;
+  font-size: 0.7rem;
+  color: var(--fg);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
 }
 
 .photo-frame-a {
