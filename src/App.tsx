@@ -3,6 +3,7 @@ import { NavBar } from './components/NavBar'
 import { Footer } from './components/Footer'
 import { GlitchBackground } from './components/GlitchBackground'
 import { DesktopPet } from './components/DesktopPet'
+import { AudioPlayer } from './components/AudioPlayer'
 import TargetCursor from './components/TargetCursor/TargetCursor'
 import { Home } from './pages/Home'
 import { CvGeneral } from './pages/CvGeneral'
@@ -16,6 +17,7 @@ export function App() {
     <BrowserRouter>
       <GlitchBackground />
       <DesktopPet />
+      <AudioPlayer />
       <TargetCursor targetSelector=".cursor-target" cursorColor="#ef4444" cursorColorOnTarget="#ff8080" onSnap={playWoodClick} />
       <NavBar />
       <Routes>

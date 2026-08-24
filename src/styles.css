@@ -182,6 +182,51 @@ a { color: var(--red-3); }
   font-weight: inherit;
 }
 
+.audio-player {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--hairline-2);
+}
+
+.audio-player-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--red-2);
+  color: #fff;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: background 160ms var(--ease-out), transform 120ms var(--ease-out);
+}
+.audio-player-toggle:hover { background: var(--red-3); }
+.audio-player-toggle:active { transform: scale(0.94); }
+
+.audio-player-volume {
+  width: 70px;
+  accent-color: var(--red-2);
+  cursor: pointer;
+}
+
+@media (max-width: 620px) {
+  .audio-player { left: 10px; padding: 8px 10px; gap: 8px; }
+  .audio-player-volume { width: 50px; }
+}
+
 /* ---------- desktop pet: original glowing sprite, not a third-party asset ---------- */
 
 .desktop-pet {
