@@ -11,14 +11,6 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: 'SAPE-PrEP',
-    tag: 'Producto full-stack · en vivo',
-    blurb: 'Orientación educativa explicable. No diagnostica, no prescribe.',
-    link: 'https://sape-prep.vercel.app',
-    linkLabel: 'Ver sitio en vivo',
-    image: '/projects/sape-prep.png',
-  },
-  {
     title: 'Conecta Panamá',
     tag: 'Súper-app comunitaria · ganó el Hackathon ITSE–MUPA 2025',
     blurb: 'Educación, comercio local y un asistente de IA, en una sola app.',
@@ -27,12 +19,12 @@ const projects: Project[] = [
     image: '/projects/conecta-panama.png',
   },
   {
-    title: 'LocalEpiGuard (REYDR)',
-    tag: 'IA aplicada · salud escolar',
-    blurb: 'Reporte y detección temprana de brotes escolares en Panamá.',
-    link: 'https://reydr-smart-outbreak-detection-syst.vercel.app',
+    title: 'Ruido Marginal Fest',
+    tag: 'Diseño web y hosting · Next.js',
+    blurb: 'Sitio de un festival: lineup, entradas y FAQ, con identidad visual propia.',
+    link: 'https://ruidomarginal.vercel.app',
     linkLabel: 'Ver sitio en vivo',
-    image: '/projects/reydr.png',
+    image: '/projects/ruidomarginal.png',
   },
   {
     title: 'Vía Centenario — Gemelo Digital',
