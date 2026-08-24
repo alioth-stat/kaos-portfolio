@@ -1,0 +1,132 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0c0c0e;
+  color: #f2f1f0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 11mm 16mm 16mm;
+  background: #0c0c0e;
+  background-image: radial-gradient(circle at 100% 0%, rgba(226, 38, 63, 0.14), transparent 45%);
+}
+
+.name {
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.headline {
+  font-size: 12.5pt;
+  font-weight: 600;
+  color: #ff4d63;
+  margin: 3pt 0 8pt;
+  letter-spacing: 0.2px;
+}
+
+.contact {
+  font-size: 8.6pt;
+  color: #b7b5ba;
+  margin: 0 0 10pt;
+  line-height: 1.4;
+}
+
+.contact a { color: #b7b5ba; text-decoration: none; }
+
+.rule {
+  border: none;
+  border-top: 1px solid #2a2a2e;
+  margin: 10pt 0;
+}
+
+.section-title {
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #ff4d63;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin: 0 0 6pt;
+}
+
+.profile {
+  font-size: 9.6pt;
+  line-height: 1.55;
+  color: #e6e5e3;
+  margin: 0 0 4pt;
+}
+
+.section { margin-bottom: 9pt; }
+
+ul.bullets {
+  margin: 0;
+  padding-left: 12pt;
+  font-size: 9.3pt;
+  line-height: 1.55;
+  color: #e6e5e3;
+}
+
+ul.bullets li { margin-bottom: 3pt; }
+
+.entry-title {
+  font-size: 9.8pt;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.entry-meta {
+  font-size: 8.4pt;
+  color: #9a98a0;
+  margin: 0 0 4pt;
+}
+
+.tag-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 4pt;
+}
+
+.tag-group-label {
+  font-size: 8.6pt;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 2pt;
+}
+
+.tag-group-items {
+  font-size: 8.9pt;
+  color: #cfcdd2;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10mm;
+  left: 16mm;
+  right: 16mm;
+  text-align: center;
+  font-size: 7.4pt;
+  color: #6f6d74;
+  border-top: 1px solid #232226;
+  padding-top: 6pt;
+}
+
+.two-col {
+  display: flex;
+  gap: 18pt;
+}
+.two-col > div { flex: 1; }
