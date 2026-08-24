@@ -1,4 +1,5 @@
 import { GlitchText } from '../components/GlitchText'
+import { LogoLoop } from '../components/LogoLoop'
 
 type Project = {
   title: string
@@ -90,6 +91,8 @@ export function Portfolio() {
           marketing. Esto es lo que he hecho con esa mezcla.
         </p>
       </section>
+
+      <LogoLoop />
 
       <section className="projects-section">
         <p className="section-label">Proyectos</p>

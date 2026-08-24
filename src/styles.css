@@ -549,6 +549,69 @@ a { color: var(--red-3); }
   .photo-frame-b { margin-top: 0; }
 }
 
+/* ---------- logo loop: scrolling strip of tool/platform icons ---------- */
+
+.logo-loop {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  margin: 4px 0 8px;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.logo-loop-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: logo-loop-scroll 28s linear infinite;
+}
+
+@keyframes logo-loop-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.logo-loop-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 92px;
+  height: 40px;
+}
+
+.logo-loop-img {
+  max-width: 32px;
+  max-height: 32px;
+  opacity: 0.75;
+  transition: opacity 160ms var(--ease-out);
+}
+
+.logo-loop-item:hover .logo-loop-img {
+  opacity: 1;
+}
+
+.logo-loop-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--hairline-2);
+  color: var(--fg-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-loop-track { animation: none; }
+}
+
 .projects-section {
   padding-top: 40px;
   border-top: 1px solid var(--hairline);
