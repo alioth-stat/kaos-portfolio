@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Uses Instagram's own official embed (embed.js + blockquote), the same
 // markup their own "Embed" share option generates — the post is rendered by
@@ -24,22 +24,56 @@ function loadEmbedScript(): Promise<void> {
   return scriptLoadPromise
 }
 
+// Instagram's widget refuses to render narrower than ~328px, so shrinking it
+// means scaling the whole iframe down and matching the wrapper's box to the
+// scaled size (transform doesn't shrink layout size on its own).
+const SCALE = 0.64
+const NATURAL_WIDTH = 328
+
 export function InstagramEmbed({ url }: { url: string }) {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const innerRef = useRef<HTMLDivElement>(null)
+  const [height, setHeight] = useState<number | null>(null)
 
   useEffect(() => {
+    let cancelled = false
+    let observer: ResizeObserver | null = null
+    let pollId: ReturnType<typeof setInterval> | null = null
+
     loadEmbedScript().then(() => {
+      if (cancelled) return
       window.instgrm?.Embeds.process()
+      pollId = setInterval(() => {
+        const iframe = innerRef.current?.querySelector('iframe')
+        if (iframe) {
+          if (pollId) clearInterval(pollId)
+          observer = new ResizeObserver((entries) => {
+            const h = entries[0]?.contentRect.height
+            if (h) setHeight(h * SCALE)
+          })
+          observer.observe(iframe)
+        }
+      }, 200)
     })
+
+    return () => {
+      cancelled = true
+      if (pollId) clearInterval(pollId)
+      observer?.disconnect()
+    }
   }, [url])
 
   return (
-    <div className="instagram-embed" ref={containerRef}>
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={url}
-        data-instgrm-version="14"
-      />
+    <div
+      className="instagram-embed"
+      style={{ width: NATURAL_WIDTH * SCALE, height: height ?? undefined }}
+    >
+      <div className="instagram-embed-inner" ref={innerRef} style={{ transform: `scale(${SCALE})` }}>
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink={url}
+          data-instgrm-version="14"
+        />
+      </div>
     </div>
   )
 }

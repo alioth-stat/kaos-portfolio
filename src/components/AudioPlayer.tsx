@@ -2,7 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 
 // Points at YouTube's own hosted stream via their official IFrame Player
 // API — nothing is downloaded or rehosted, playback stays on YouTube's
-// infrastructure. Never autoplays: playback only starts from the button.
+// infrastructure.
+//
+// Browsers block audible autoplay outright (Chrome/Firefox/Safari all do
+// this at the platform level — no site-side code can override it). Muted
+// autoplay is universally allowed, so playback starts muted on load and
+// unmutes on the visitor's first interaction with the page (click, key,
+// touch) — the standard workaround every site with "autoplay audio" uses,
+// since audible playback literally cannot start before a user gesture.
 const YOUTUBE_VIDEO_ID = '3GRqXlKj40M'
 
 declare global {
@@ -36,6 +43,7 @@ export function AudioPlayer() {
   const [ready, setReady] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [volume, setVolume] = useState(60)
+  const unmutedRef = useRef(false)
 
   useEffect(() => {
     let cancelled = false
@@ -49,7 +57,12 @@ export function AudioPlayer() {
         events: {
           onReady: (e: any) => {
             e.target.setVolume(volume)
+            e.target.mute()
+            e.target.playVideo()
             setReady(true)
+          },
+          onStateChange: (e: any) => {
+            setPlaying(e.data === window.YT.PlayerState.PLAYING)
           },
         },
       })
@@ -62,15 +75,32 @@ export function AudioPlayer() {
   }, [])
 
   useEffect(() => {
+    if (!ready) return
+    const unmuteOnInteraction = () => {
+      if (unmutedRef.current) return
+      unmutedRef.current = true
+      const p = playerRef.current
+      p?.unMute()
+      p?.setVolume(volume)
+      if (p && p.getPlayerState() !== window.YT.PlayerState.PLAYING) p.playVideo()
+    }
+    const events: Array<keyof WindowEventMap> = ['pointerdown', 'keydown', 'touchstart']
+    events.forEach((ev) => window.addEventListener(ev, unmuteOnInteraction, { once: true }))
+    return () => events.forEach((ev) => window.removeEventListener(ev, unmuteOnInteraction))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready])
+
+  useEffect(() => {
     playerRef.current?.setVolume?.(volume)
   }, [volume])
 
   const toggle = () => {
     const p = playerRef.current
     if (!p) return
+    unmutedRef.current = true
+    p.unMute()
     if (playing) p.pauseVideo()
     else p.playVideo()
-    setPlaying(!playing)
   }
 
   return (
