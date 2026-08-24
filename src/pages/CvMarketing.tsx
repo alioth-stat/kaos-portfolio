@@ -12,7 +12,7 @@ export function CvMarketing() {
             <h1>Alejandro Polo Palacios</h1>
             <p className="cv-headline">Marketing Digital, Automatización y Producción de Contenido para Eventos</p>
           </div>
-          <a className="btn-solid" href="/cv-marketing-alejandro-polo.pdf" download>
+          <a className="btn-solid cursor-target" href="/cv-marketing-alejandro-polo.pdf" download>
             Descargar PDF
           </a>
         </div>

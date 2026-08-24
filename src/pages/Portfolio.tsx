@@ -67,7 +67,7 @@ export function Portfolio() {
 
       <div className="project-grid">
         {projects.map((p) => (
-          <a className="project-card" key={p.title} href={p.link} target="_blank" rel="noreferrer">
+          <a className="project-card cursor-target" key={p.title} href={p.link} target="_blank" rel="noreferrer">
             <p className="project-tag">{p.tag}</p>
             <h3>{p.title}</h3>
             <p>{p.description}</p>

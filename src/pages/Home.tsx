@@ -24,8 +24,8 @@ export function Home() {
       <RoleSwitch />
 
       <div className="hero-links">
-        <Link to="/portfolio" className="btn-outline">Ver portafolio</Link>
-        <Link to="/concept" className="btn-outline">Propuesta para KAOS Panamá</Link>
+        <Link to="/portfolio" className="btn-outline cursor-target">Ver portafolio</Link>
+        <Link to="/concept" className="btn-outline cursor-target">Propuesta para KAOS Panamá</Link>
       </div>
     </main>
   )

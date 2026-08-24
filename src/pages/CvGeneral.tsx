@@ -11,7 +11,7 @@ export function CvGeneral() {
             <h1>Alejandro Polo Palacios</h1>
             <p className="cv-headline">Ayudante General · Apoyo Operativo y Logística de Eventos</p>
           </div>
-          <a className="btn-solid" href="/cv-general-alejandro-polo.pdf" download>
+          <a className="btn-solid cursor-target" href="/cv-general-alejandro-polo.pdf" download>
             Descargar PDF
           </a>
         </div>
