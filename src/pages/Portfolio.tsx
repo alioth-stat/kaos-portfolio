@@ -1,3 +1,5 @@
+import { GlitchText } from '../components/GlitchText'
+
 type Project = {
   title: string
   tag: string
@@ -61,6 +63,9 @@ export function Portfolio() {
   return (
     <main className="page-content portfolio-page">
       <section className="bio-hero">
+        <p className="name-glitch-line">
+          <GlitchText words={['Alejandro', 'Alioth']} interval={2000} className="name-glitch-word" /> Polo Palacios
+        </p>
         <p className="eyebrow">
           <span className="eyebrow-dot" />
           Sobre mí

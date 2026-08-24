@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
 import { Footer } from './components/Footer'
 import { GlitchBackground } from './components/GlitchBackground'
+import { DesktopPet } from './components/DesktopPet'
 import TargetCursor from './components/TargetCursor/TargetCursor'
 import { Home } from './pages/Home'
 import { CvGeneral } from './pages/CvGeneral'
@@ -14,6 +15,7 @@ export function App() {
   return (
     <BrowserRouter>
       <GlitchBackground />
+      <DesktopPet />
       <TargetCursor targetSelector=".cursor-target" cursorColor="#ef4444" cursorColorOnTarget="#ff8080" onSnap={playWoodClick} />
       <NavBar />
       <Routes>
