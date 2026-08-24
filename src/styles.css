@@ -1051,6 +1051,13 @@ a { color: var(--red-3); }
   gap: 14px;
   flex-wrap: wrap;
 }
+
+.instagram-embed {
+  flex: 0 0 auto;
+  max-width: 328px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
 .phone-card {
   width: 200px;
   min-height: 240px;

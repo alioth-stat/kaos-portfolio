@@ -1,4 +1,11 @@
 import { ConceptVideoBackground } from '../components/ConceptVideoBackground'
+import { InstagramEmbed } from '../components/InstagramEmbed'
+
+const igPosts = [
+  'https://www.instagram.com/reel/DcTLlQMBGoi/',
+  'https://www.instagram.com/p/Db8-NEulYld/',
+  'https://www.instagram.com/reel/DbwGQZnBGQA/',
+]
 
 const figures = [
   { id: 'guy', image: '/concept/cutout-guy.png' },
@@ -52,22 +59,11 @@ export function Concept() {
       </section>
 
       <section className="concept-block">
+        <p className="section-label">@kaosclubpanama</p>
         <div className="carousel-mock">
-          <div className="phone-card">
-            <p className="phone-label">Slide 1</p>
-            <p className="phone-title">Lineup de la noche</p>
-            <p>Anuncio de DJs y temática de la fecha</p>
-          </div>
-          <div className="phone-card">
-            <p className="phone-label">Slide 2</p>
-            <p className="phone-title">Promo de entrada</p>
-            <p>Free antes de las 11 PM · fast pass por fases</p>
-          </div>
-          <div className="phone-card">
-            <p className="phone-label">Slide 3</p>
-            <p className="phone-title">Reserva tu cumpleaños</p>
-            <p>Paquetes de mesa · CTA: escríbenos por WhatsApp</p>
-          </div>
+          {igPosts.map((url) => (
+            <InstagramEmbed url={url} key={url} />
+          ))}
         </div>
       </section>
     </main>
