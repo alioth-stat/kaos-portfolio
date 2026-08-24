@@ -756,15 +756,6 @@ a { color: var(--red-3); }
 
 .kaos-hero {
   position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--hairline-2);
-  padding: 24px 24px 8px !important;
-}
-
-.kaos-hero > h2,
-.kaos-hero > p {
-  position: relative;
   z-index: 1;
 }
 
@@ -773,19 +764,43 @@ a { color: var(--red-3); }
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .concept-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.55;
+  transform: scale(1.15);
+  opacity: 0.9;
 }
 
 .concept-bg-scrim {
   position: absolute;
   inset: 0;
-  background: rgba(5, 5, 5, 0.55);
+  background: rgba(5, 5, 5, 0.18);
+}
+
+.concept-page.page-content {
+  position: relative;
+  z-index: 1;
+}
+
+.concept-page h1,
+.concept-page > .tagline {
+  display: inline-block;
+  background: #0c0c0c;
+  padding: 4px 12px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.concept-page h1 {
+  margin-bottom: 8px;
+}
+
+.concept-page > .tagline {
+  margin-bottom: 20px;
 }
 
 .cutout-row {
@@ -822,13 +837,13 @@ a { color: var(--red-3); }
 
 .cutout-guy .cutout-figure-fill,
 .cutout-girl .cutout-figure-fill {
-  width: 130px;
-  height: 240px;
+  width: 190px;
+  height: 350px;
 }
 
 .cutout-dj .cutout-figure-fill {
-  width: 160px;
-  height: 300px;
+  width: 230px;
+  height: 430px;
 }
 
 .cutout-figure-fill {
@@ -900,8 +915,10 @@ a { color: var(--red-3); }
 
 .poster-mock {
   position: relative;
-  background: var(--bg-2);
-  border: 1px solid var(--hairline);
+  background: rgba(12, 12, 12, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--hairline-2);
   border-radius: var(--radius-lg);
   padding: 44px 26px;
   text-align: center;
@@ -941,8 +958,10 @@ a { color: var(--red-3); }
 .phone-card {
   width: 200px;
   min-height: 240px;
-  background: var(--surface);
-  border: 1px solid var(--hairline);
+  background: rgba(12, 12, 12, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--hairline-2);
   border-radius: var(--radius-lg);
   padding: 18px;
   transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out);

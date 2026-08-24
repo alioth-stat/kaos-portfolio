@@ -30,19 +30,15 @@ const figures: CutoutFigure[] = [
 
 export function Concept() {
   return (
-    <main className="page-content">
-      <div className="unofficial-banner">
-        Propuesta creativa no oficial para KAOS Panamá — no oficial, no afiliada a la marca.
-        Concepto elaborado únicamente como muestra de trabajo para esta postulación.
-      </div>
+    <main className="page-content concept-page">
+      <ConceptVideoBackground />
 
       <h1>Concepto: Noche KAOS</h1>
       <p className="tagline">
-        Tres piezas de muestra: poster de evento, carrusel de Instagram y dashboard de campaña.
+        Propuesta creativa no oficial para KAOS Panamá — poster, carrusel y dashboard de muestra.
       </p>
 
       <section className="concept-block kaos-hero">
-        <ConceptVideoBackground />
         <h2>0. Página de evento (mockup interactivo)</h2>
         <p className="muted small">Pasa el cursor sobre cada figura.</p>
 
