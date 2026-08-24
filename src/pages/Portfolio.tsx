@@ -75,21 +75,35 @@ export function Portfolio() {
           Ayudo a marcas y eventos a crear <span className="accent-italic">contenido que conecta.</span>
         </h1>
 
-        <div className="photo-pair">
+        <div className="bio-row">
           <figure className="photo-frame photo-frame-a">
             <img src="/projects/alejandro-professional.jpg" alt="Alejandro Polo Palacios en una entrevista de prensa" />
             <figcaption>Prensa y comunicación</figcaption>
           </figure>
+          <div className="bio-row-text">
+            <p>
+              Trabajo con IA por delante de casi todo lo que hago. Soy becario de la Fundación
+              Deveaux, y en DETA pasé buena parte de mi tiempo construyendo plataformas para la
+              próxima generación de panameños: Conecta Panamá, ganador del Hackathon ITSE–MUPA
+              2025, es el ejemplo más directo.
+            </p>
+          </div>
+        </div>
+
+        <div className="bio-row bio-row-reverse">
+          <div className="bio-row-text">
+            <p>
+              El resto es creatividad: salud, movilidad urbana, videojuegos, IA con personalidad,
+              producción de eventos. Es una mezcla poco común en Panamá, y ahí está lo que aporto:
+              puedo pensar como técnico y ejecutar como creativo, sin quedarme solo en uno de los
+              dos lados.
+            </p>
+          </div>
           <figure className="photo-frame photo-frame-b">
             <img src="/projects/alejandro-nightlife.jpg" alt="Alejandro Polo Palacios en un evento nocturno" />
             <figcaption>Cultura y eventos nocturnos</figcaption>
           </figure>
         </div>
-
-        <p className="bio-caption">
-          Diseño, automatización con IA y una base técnica que no es la típica de alguien en
-          marketing. Esto es lo que he hecho con esa mezcla.
-        </p>
       </section>
 
       <LogoLoop />
