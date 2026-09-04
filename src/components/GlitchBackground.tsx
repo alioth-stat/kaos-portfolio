@@ -1,12 +1,12 @@
 import LetterGlitch from './LetterGlitch'
 
-const RED_CRIMSON = ['#450a0a', '#7f1d1d', '#dc2626', '#ef4444']
+const NAVY_TEAL_GOLD = ['#051821', '#1A4645', '#266867', '#F58800']
 
 export function GlitchBackground() {
   return (
     <div className="glitch-bg" aria-hidden="true">
       <LetterGlitch
-        glitchColors={RED_CRIMSON}
+        glitchColors={NAVY_TEAL_GOLD}
         glitchSpeed={60}
         smooth
         outerVignette

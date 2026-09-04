@@ -1,4 +1,3 @@
-import { GlitchText } from '../components/GlitchText'
 import { LogoLoop } from '../components/LogoLoop'
 
 type Project = {
@@ -64,15 +63,14 @@ export function Portfolio() {
   return (
     <main className="page-content portfolio-page">
       <section className="bio-hero">
-        <p className="name-glitch-line">
-          <GlitchText words={['Alejandro', 'Alioth']} interval={2000} className="name-glitch-word" /> Polo Palacios
-        </p>
+        <p className="bio-name">Alejandro Polo Palacios</p>
         <p className="eyebrow">
           <span className="eyebrow-dot" />
           Sobre mí
         </p>
         <h1 className="kinetic-headline">
-          Ayudo a marcas y eventos a crear <span className="accent-italic">contenido que conecta.</span>
+          Construyo <span className="accent-italic">sistemas de IA y software</span> que
+          resuelven problemas reales.
         </h1>
 
         <div className="bio-row">
@@ -90,19 +88,13 @@ export function Portfolio() {
           </div>
         </div>
 
-        <div className="bio-row bio-row-reverse">
-          <div className="bio-row-text">
-            <p>
-              El resto es creatividad: salud, movilidad urbana, videojuegos, IA con personalidad,
-              producción de eventos. Es una mezcla poco común en Panamá, y ahí está lo que aporto:
-              puedo pensar como técnico y ejecutar como creativo, sin quedarme solo en uno de los
-              dos lados.
-            </p>
-          </div>
-          <figure className="photo-frame photo-frame-b">
-            <img src="/projects/alejandro-nightlife.jpg" alt="Alejandro Polo Palacios en un evento nocturno" />
-            <figcaption>Cultura y eventos nocturnos</figcaption>
-          </figure>
+        <div className="bio-row-text bio-para-full">
+          <p>
+            El resto es curiosidad técnica aplicada a lo que me interesa: salud, movilidad
+            urbana, videojuegos, IA con personalidad. Es una combinación poco común en Panamá, y
+            ahí está lo que aporto: puedo pensar como ingeniero y ejecutar como creativo, sin
+            quedarme solo en uno de los dos lados.
+          </p>
         </div>
       </section>
 

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { RoleSwitch } from '../components/RoleSwitch'
 
 export function Home() {
   return (
@@ -10,21 +9,20 @@ export function Home() {
 
       <h1>Alejandro Polo Palacios</h1>
       <p className="tagline">
-        Marketing digital, contenido audiovisual y automatización con IA para eventos y marcas.
+        Ingeniería de agentes IA, automatización de sistemas y desarrollo full-stack.
       </p>
 
       <p className="bio">
-        Cinco años en diseño audiovisual —After Effects, Photoshop— y bilingüe desde siempre.
-        Empecé en logística y coordinación de proyectos, y hoy uso esa base para producir
-        contenido y campañas: entiendo cómo se mueve Instagram, y sumo automatización e IA
-        para que un evento se llene, no solo se vea bien.
+        Pasante de Ingeniería en IA en DETA (8+ meses), donde diseño frameworks de agentes
+        autónomos, arquitecturas de Machine Learning y funcionalidades full-stack en producción.
+        Curso el Técnico Superior en Inteligencia Artificial en el ITSE y soy becario de la
+        Fundación Deveaux. Bilingüe nativo, con antecedentes en coordinación de proyectos que
+        aplico al trabajo técnico en equipo.
       </p>
-
-      <RoleSwitch />
 
       <div className="hero-links">
         <Link to="/portfolio" className="btn-outline cursor-target">Ver portafolio</Link>
-        <Link to="/concept" className="btn-outline cursor-target">Propuesta para KAOS Panamá</Link>
+        <Link to="/cv" className="btn-solid cursor-target">Ver CV</Link>
       </div>
     </main>
   )

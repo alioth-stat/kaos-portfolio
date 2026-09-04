@@ -2,30 +2,21 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
 import { Footer } from './components/Footer'
 import { GlitchBackground } from './components/GlitchBackground'
-import { DesktopPet } from './components/DesktopPet'
-import { AudioPlayer } from './components/AudioPlayer'
 import TargetCursor from './components/TargetCursor/TargetCursor'
 import { Home } from './pages/Home'
-import { CvGeneral } from './pages/CvGeneral'
-import { CvMarketing } from './pages/CvMarketing'
+import { Cv } from './pages/Cv'
 import { Portfolio } from './pages/Portfolio'
-import { Concept } from './pages/Concept'
-import { playWoodClick } from './lib/sound'
 
 export function App() {
   return (
     <BrowserRouter>
       <GlitchBackground />
-      <DesktopPet />
-      <AudioPlayer />
-      <TargetCursor targetSelector=".cursor-target" cursorColor="#ef4444" cursorColorOnTarget="#ff8080" onSnap={playWoodClick} />
+      <TargetCursor targetSelector=".cursor-target" cursorColor="#F58800" cursorColorOnTarget="#FBBC24" />
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cv/general" element={<CvGeneral />} />
-        <Route path="/cv/marketing" element={<CvMarketing />} />
+        <Route path="/cv" element={<Cv />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/concept" element={<Concept />} />
       </Routes>
       <Footer />
     </BrowserRouter>
