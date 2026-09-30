@@ -1,14 +1,23 @@
 import { NavLink } from 'react-router-dom'
 
+const links = [
+  { to: '/portfolio', label: 'Proyectos' },
+  { to: '/eventos', label: 'Eventos' },
+  { to: '/cv', label: 'CV' },
+]
+
 export function NavBar() {
   return (
     <header className="nav">
-      <NavLink to="/" className="nav-brand cursor-target" aria-label="Alejandro Polo Palacios — inicio">
-        <span className="nav-mark">AP</span>
+      <NavLink to="/" className="nav-mark nacre cursor-target" aria-label="Alejandro Polo Palacios, inicio">
+        AP
       </NavLink>
-      <nav className="nav-links">
-        <NavLink to="/portfolio" className={({ isActive }) => `cursor-target${isActive ? ' active' : ''}`}>Portafolio</NavLink>
-        <NavLink to="/cv" className={({ isActive }) => `cursor-target${isActive ? ' active' : ''}`}>CV</NavLink>
+      <nav className="nav-links" aria-label="Principal">
+        {links.map((l) => (
+          <NavLink key={l.to} to={l.to} className={({ isActive }) => `cursor-target${isActive ? ' active' : ''}`}>
+            {l.label}
+          </NavLink>
+        ))}
       </nav>
     </header>
   )

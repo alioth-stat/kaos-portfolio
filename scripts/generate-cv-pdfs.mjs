@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 
 const jobs = [
-  { src: 'cv-src/cv.html', out: 'public/cv-alejandro-polo.pdf' },
+  { src: 'cv-src/cv.html', out: 'public/cv-alioth-polo.pdf' },
 ]
 
 const browser = await puppeteer.launch({

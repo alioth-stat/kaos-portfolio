@@ -1,134 +1,115 @@
-import { LogoLoop } from '../components/LogoLoop'
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { ProjectDialog } from '@/components/ProjectDialog'
+import { posterOf } from '@/components/ProjectMedia'
+import { Split } from '@/components/Split'
+import { projects, sectorLabels, type Sector } from '@/data/projects'
+import { gsap, useMotion } from '@/lib/motion'
 
-type Project = {
-  title: string
-  tag: string
-  blurb: string
-  link: string
-  linkLabel: string
-  image?: string
-  video?: { webm: string; mp4: string; poster: string }
-  mark?: string
-  accent?: 'a' | 'b' | 'c'
-}
-
-const projects: Project[] = [
-  {
-    title: 'Conecta Panamá',
-    tag: 'Súper-app comunitaria · ganó el Hackathon ITSE–MUPA 2025',
-    blurb: 'Educación, comercio local y un asistente de IA, en una sola app.',
-    link: 'https://conecta-panama.vercel.app',
-    linkLabel: 'Ver sitio en vivo',
-    image: '/projects/conecta-panama.png',
-  },
-  {
-    title: 'Ruido Marginal Fest',
-    tag: 'Diseño web y hosting · Next.js',
-    blurb: 'Sitio de un festival: lineup, entradas y FAQ, con identidad visual propia.',
-    link: 'https://ruidomarginal.vercel.app',
-    linkLabel: 'Ver sitio en vivo',
-    image: '/projects/ruidomarginal.png',
-  },
-  {
-    title: 'Vía Centenario — Gemelo Digital',
-    tag: 'Simulación urbana · React 3D',
-    blurb: 'Mapa 3D y KPIs de tráfico para la Vía Centenario.',
-    link: 'https://github.com/alioth-stat/Via-Centenario-Digital-Twin',
-    linkLabel: 'Ver repositorio',
-    image: '/projects/via-centenario.jpg',
-  },
-  {
-    title: 'GLaDOS Desktop Assistant',
-    tag: 'IA con personalidad · Electron',
-    blurb: 'Asistente de escritorio con GPT-4 y la actitud de GLaDOS.',
-    link: 'https://github.com/alioth-stat/GLaDOS-desktop-assistant',
-    linkLabel: 'Ver repositorio',
-    image: '/projects/glados.jpg',
-  },
-  {
-    title: 'Imaginery',
-    tag: 'Herramienta visual · Python',
-    blurb: 'Slideshow generativo de escritorio, con caché y limpieza automática.',
-    link: 'https://github.com/alioth-stat',
-    linkLabel: 'Ver perfil de GitHub',
-    video: {
-      webm: '/projects/imaginery.webm',
-      mp4: '/projects/imaginery.mp4',
-      poster: '/projects/imaginery-poster.jpg',
-    },
-  },
-]
+type Filter = 'all' | Sector
 
 export function Portfolio() {
+  const root = useRef<HTMLElement>(null)
+  const preview = useRef<HTMLDivElement>(null)
+  const [filter, setFilter] = useState<Filter>('all')
+  const [hovered, setHovered] = useState<string | null>(null)
+  const { hash } = useLocation()
+  const navigate = useNavigate()
+
+  // the open project lives in the URL hash so a single project can be shared
+  const open = projects.find((p) => p.slug === hash.slice(1)) ?? null
+  const visible = filter === 'all' ? projects : projects.filter((p) => p.sectors.includes(filter))
+  const hoveredProject = projects.find((p) => p.slug === hovered)
+
+  useMotion(root, () => {
+    gsap.from('.page-head .split-char', { yPercent: 110, duration: 1.1, stagger: 0.04, ease: 'expo.out' })
+  })
+
+  useMotion(
+    root,
+    () => {
+      gsap.from('.index-row', { y: 28, opacity: 0, duration: 0.8, stagger: 0.05, ease: 'expo.out' })
+    },
+    [filter],
+  )
+
+  // preview image trails the pointer with a little lag
+  useEffect(() => {
+    const el = preview.current
+    if (!el) return
+    const x = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' })
+    const y = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' })
+    const move = (e: PointerEvent) => {
+      x(e.clientX + 24)
+      y(e.clientY - 120)
+    }
+    window.addEventListener('pointermove', move)
+    return () => window.removeEventListener('pointermove', move)
+  }, [])
+
+  useEffect(() => {
+    gsap.to(preview.current, { opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.92, duration: 0.3 })
+  }, [hovered])
+
   return (
-    <main className="page-content portfolio-page">
-      <section className="bio-hero">
-        <p className="bio-name">Alejandro Polo Palacios</p>
-        <p className="eyebrow">
-          <span className="eyebrow-dot" />
-          Sobre mí
-        </p>
-        <h1 className="kinetic-headline">
-          Construyo <span className="accent-italic">sistemas de IA y software</span> que
-          resuelven problemas reales.
+    <main ref={root} className="shell">
+      <header className="page-head">
+        <h1 className="display nacre">
+          <Split text="Proyectos" by="char" />
         </h1>
+        <p>
+          Sistemas de IA y software que construí en hackathons, en DETA y por mi cuenta. Abre cualquiera para ver
+          capturas, stack y enlaces.
+        </p>
+      </header>
 
-        <div className="bio-row">
-          <figure className="photo-frame photo-frame-a">
-            <img src="/projects/alejandro-professional.jpg" alt="Alejandro Polo Palacios en una entrevista de prensa" />
-            <figcaption>Prensa y comunicación</figcaption>
-          </figure>
-          <div className="bio-row-text">
-            <p>
-              Trabajo con IA por delante de casi todo lo que hago. Soy becario de la Fundación
-              Deveaux, y en DETA pasé buena parte de mi tiempo construyendo plataformas para la
-              próxima generación de panameños: Conecta Panamá, ganador del Hackathon ITSE–MUPA
-              2025, es el ejemplo más directo.
-            </p>
-          </div>
-        </div>
+      <ToggleGroup
+        type="single"
+        value={filter}
+        onValueChange={(v) => v && setFilter(v as Filter)}
+        className="filters"
+        aria-label="Filtrar proyectos por área"
+      >
+        <ToggleGroupItem value="all" className="cursor-target">
+          Todos ({projects.length})
+        </ToggleGroupItem>
+        {(Object.keys(sectorLabels) as Sector[]).map((s) => (
+          <ToggleGroupItem key={s} value={s} className="cursor-target">
+            {sectorLabels[s]}
+          </ToggleGroupItem>
+        ))}
+      </ToggleGroup>
 
-        <div className="bio-row-text bio-para-full">
-          <p>
-            El resto es curiosidad técnica aplicada a lo que me interesa: salud, movilidad
-            urbana, videojuegos, IA con personalidad. Es una combinación poco común en Panamá, y
-            ahí está lo que aporto: puedo pensar como ingeniero y ejecutar como creativo, sin
-            quedarme solo en uno de los dos lados.
-          </p>
-        </div>
-      </section>
+      <ul className="index" onPointerLeave={() => setHovered(null)}>
+        {visible.map((p) => (
+          <li key={p.slug}>
+            <button
+              type="button"
+              className="index-row cursor-target"
+              onPointerEnter={() => setHovered(p.slug)}
+              onClick={() => navigate(`#${p.slug}`)}
+            >
+              <span className="catalog">Nº {String(projects.indexOf(p) + 1).padStart(2, '0')}</span>
+              <span>
+                <span className="name">{p.title}</span>
+                <span className="line">{p.line}</span>
+              </span>
+              <span className="sector meta">{p.sectors.map((s) => sectorLabels[s]).join(', ')}</span>
+              <span className="year meta">{p.year}</span>
+              <img className="index-thumb" src={posterOf(p.media[0])} alt="" loading="lazy" />
+            </button>
+          </li>
+        ))}
+      </ul>
 
-      <LogoLoop />
+      <div ref={preview} className="preview" aria-hidden="true">
+        {hoveredProject && <img src={posterOf(hoveredProject.media[0])} alt="" />}
+      </div>
 
-      <section className="projects-section">
-        <p className="section-label">Proyectos</p>
-        <p className="tagline">Desliza para ver más →</p>
+      <div className="h-24" />
 
-        <div className="project-carousel">
-          {projects.map((p) => (
-            <a className="carousel-card cursor-target" key={p.title} href={p.link} target="_blank" rel="noreferrer">
-              <div className={`carousel-media${p.image || p.video ? '' : ` card-accent-${p.accent}`}`}>
-                {p.video ? (
-                  <video autoPlay loop muted playsInline poster={p.video.poster}>
-                    <source src={p.video.webm} type="video/webm" />
-                    <source src={p.video.mp4} type="video/mp4" />
-                  </video>
-                ) : p.image ? (
-                  <img src={p.image} alt={p.title} loading="lazy" />
-                ) : (
-                  <span className="carousel-mark">{p.mark}</span>
-                )}
-              </div>
-              <div className="carousel-body">
-                <p className="carousel-tag">{p.tag}</p>
-                <h3>{p.title}</h3>
-                <p className="carousel-blurb">{p.blurb}</p>
-                <span className="carousel-link">{p.linkLabel} →</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+      <ProjectDialog project={open} onClose={() => navigate('/portfolio', { replace: true })} />
     </main>
   )
 }
