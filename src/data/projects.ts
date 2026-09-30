@@ -43,7 +43,10 @@ export const projects: Project[] = [
       { kind: 'video', mp4: '/projects/delta-demo.mp4', poster: '/projects/delta-poster.webp', alt: 'Demo de la cola de casos de Delta-Swarm' },
       { kind: 'image', src: '/projects/delta-ficha.webp', alt: 'Ficha de un caso: causa, perfil y acción propuesta', portrait: true },
     ],
-    links: [{ label: 'Ver la presentación', href: 'https://delta-swarm-hackathon.vercel.app' }],
+    links: [
+      { label: 'Ver el sitio', href: 'https://delta-swarm.vercel.app' },
+      { label: 'Ver la presentación', href: 'https://delta-swarm-hackathon.vercel.app' },
+    ],
   },
   {
     slug: 'colmena',
